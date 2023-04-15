@@ -1,0 +1,26 @@
+CREATE TABLE drug_store (id integer primary key, product text, total integer, price integer);
+
+INSERT INTO drug_store VALUES (1, "tylenol", 7, 5);
+INSERT INTO drug_store VALUES (2, "bread", 9, 3.30);
+INSERT INTO drug_store VALUES (3, "milk", 5, 6);
+INSERT INTO drug_store VALUES (4, "cereal", 7, 5);
+INSERT INTO drug_store VALUES (5, "greeting cards", 13, 4);
+
+SELECT * FROM drug_store WHERE price ORDER BY price;
+
+/** what are the total number of products in drug_store?**/
+SELECT SUM(total) AS total_inventory FROM drug_store;
+
+/**What is the average cost of all inventory?**/
+SELECT AVG(price) AS total_cost FROM drug_store;
+
+/** How many different products are there?**/
+SELECT COUNT(product) AS different_products FROM drug_store;
+
+/** What is the most of any product?**/
+SELECT MAX(total) AS highest_inventory FROM drug_store;
+
+
+
+
+
