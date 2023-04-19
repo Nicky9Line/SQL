@@ -1,0 +1,33 @@
+SELECT * FROM superbowls;
+
+/*HOW MANY SUPERBOWL WINNERS HAVE THERE BEEN?*/
+SELECT COUNT(*) winners FROM superbowls;
+
+/*Add column to show win by total*/
+SELECT winner_pts, loser_pts,
+    CASE
+        WHEN winner_pts-loser_pts <= 3 THEN "field goal"
+        WHEN winner_pts-loser_pts <= 7 THEN "TOUCH DOWN"
+        WHEN winner_pts-loser_pts <= 14 THEN "two scores"
+        ELSE "blow out"
+        END AS "WON BY"
+        FROM superbowls;
+
+/*HOW MANY SUPERBOWLS HAVE THE COWBOYS WON?*/        
+SELECT * FROM superbowls WHERE winner IN (
+    SELECT winner FROM superbowls WHERE winner 
+    LIKE "%COWBOYS%");
+ 
+/*WHAT STADIUM HAS HOSTED THE MOST SUPERBOWLS?*/   
+SELECT stadium, COUNT(*)
+        FROM superbowls GROUP BY stadium ORDER BY COUNT(*) desc;
+        
+/*what team has won the most superbowls?*/
+
+SELECT winner, COUNT(*)
+    FROM superbowls GROUP BY winner ORDER BY COUNT(*) desc LIMIT 5;
+    
+/*LARGEST SUPERBOWL WIN?*/
+
+SELECT date, winner, SB, MAX(winner_pts) AS largest win FROM superbowls;
+
