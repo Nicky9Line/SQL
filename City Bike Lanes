@@ -1,0 +1,12 @@
+## using the City Bike Lane data I will use the window function to show safety ratings for each lane, average safety ratings for each lane, and a recommendation 
+of what to do with each lane.##
+
+SELECT street, safetyrating,
+AVG(safetyrating) OVER (PARTITION BY street) AS "Average_safety_rating",
+ CASE
+    WHEN AVG(safetyrating) OVER(PARTITION BY street) >=4 THEN "Leave AS IS"
+    WHEN AVG(safetyrating) OVER(PARTITION BY street) <2.5 THEN "Remove"
+    ELSE "Improvements needed"
+    END AS "Recommendations"
+FROM citybikelanes
+
