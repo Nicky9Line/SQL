@@ -1,0 +1,15 @@
+*/Show Customers (their full names, customer ID, and country) who are not in the US.*/
+
+SELECT FirstName, LastName, Company, CustomerId, Country
+FROM chinook.customers
+WHERE Country <>'USA'
+AND Company <>'NULL'
+GROUP BY LastName
+
+*/Show only the Customers from Brazil, France, USA and Belgium.*/
+
+SELECT FirstName, LastName, Company, CustomerId, Country
+FROM chinook.customers
+WHERE Country IN ('Brazil', 'USA', 'France', 'Belgium')
+GROUP BY LastName
+
