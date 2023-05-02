@@ -13,3 +13,24 @@ FROM chinook.customers
 WHERE Country IN ('Brazil', 'USA', 'France', 'Belgium')
 GROUP BY LastName
 
+*/Find the Invoices of customers who are from Brazil. The resulting table should show the customer's full name, Invoice ID, Date of the invoice, and billing country.*/
+
+SELECT CustomerId, FirstName, LastName, Country, InvoiceId, BillingCountry, InvoiceId
+FROM chinook.customers cust
+INNER JOIN chinook.invoices inv
+ON cust.CustomerId = inv.CustomerId
+WHERE Country = 'Brazil'
+
+*/Show the Employees who are Sales Agents.*/
+
+SELECT * FROM chinook.employees
+WHERE Title LIKE ("Sales Support Agent")
+GROUP BY EmployeeId
+
+*/Find a unique/distinct list of billing countries from the Invoice table.*/
+
+SELECT DISTINCT BillingCountry
+FROM chinook.invoices
+Group By Total
+
+*/Provide a query that shows the invoices associated with each sales agent. The resulting table should include the Sales Agent's full name.*/
