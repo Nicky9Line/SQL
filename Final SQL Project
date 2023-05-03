@@ -38,4 +38,10 @@ SELECT EmployeeId, FirstName, LastName
 FROM chinook.employees emp
 INNER JOIN chinook.customers c ON emp.EmployeeId = c.SupportRepId
 INNER JOIN chinook.invoices inv ON inv.CustomerId = c.CustomerId
-INNER JOIN chinook.invoice_items invt ON invt.InvoiceId = inv.InvoiceId
+
+
+*/How many Invoices were there in 2009?*/
+SELECT COUNT(InvoiceId)
+FROM chinook.invoices
+WHERE InvoiceDate BETWEEN '2009-01-01' AND '2009-12-31'
+
