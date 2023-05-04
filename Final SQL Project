@@ -1,3 +1,5 @@
+In this final project I am using the dataset of https://cdn.fs.teachablecdn.com/dRmwOLQsS22FVFbXfh3x and providing solutions and answers within the data.##
+
 */Show Customers (their full names, customer ID, and country) who are not in the US.*/
 
 SELECT FirstName, LastName, Company, CustomerId, Country
@@ -73,3 +75,15 @@ ON e.EmployeeId = c.SupportRepId
 INNER JOIN chinook.invoices inv
 ON c.CustomerId = inv.CustomerId
 
+/*Provide a query that shows all the Tracks, and include the Album name, Media type, and Genre.*/
+
+SELECT t.Name AS Track_Name, a.Title AS Album_name,
+m.Name AS Media_Type, g.Name AS Genre
+FROM chinook.tracks t
+INNER JOIN chinook.albums a
+ON t.AlbumId = a.AlbumId
+INNER JOIN chinook.media_types m
+ON m.MediaTypeId = t.MediaTypeId
+INNER JOIN chinook.genres g
+ON g.GenreId = t.GenreId
+GROUP BY a.Title
