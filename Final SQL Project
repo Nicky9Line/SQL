@@ -62,3 +62,14 @@ INNER JOIN chinook.artists ar
 ON a.ArtistId = ar.ArtistId
 ORDER BY invt.InvoiceLineId
 
+/*Show the Invoice Total, Customer name, Country, and Sales Agent name for all invoices and customers.*/
+
+SELECT e.FirstName AS Employee_First_Name, e.LastName AS employee_LastName,
+c.FirstName AS customer_FirstName, c.LastName AS Customer_LastName, c.Country AS Customer_Country,
+inv.InvoiceId AS Invoice_ID, inv.Total AS Invoice_Total
+FROM chinook.employees e
+INNER JOIN chinook.customers c
+ON e.EmployeeId = c.SupportRepId
+INNER JOIN chinook.invoices inv
+ON c.CustomerId = inv.CustomerId
+
