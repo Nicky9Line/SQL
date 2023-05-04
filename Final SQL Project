@@ -45,3 +45,7 @@ SELECT COUNT(InvoiceId)
 FROM chinook.invoices
 WHERE InvoiceDate BETWEEN '2009-01-01' AND '2009-12-31'
 
+/*What are the total sales for 2009?*/
+SELECT SUM(ROUND(Total)) AS Total Sales
+FROM chinook.invoices
+WHERE InvoiceDate BETWEEN '2009-01-01' AND '2009-12-31'
