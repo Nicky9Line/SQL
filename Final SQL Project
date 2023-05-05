@@ -87,3 +87,25 @@ ON m.MediaTypeId = t.MediaTypeId
 INNER JOIN chinook.genres g
 ON g.GenreId = t.GenreId
 GROUP BY a.Title
+
+/*Show the total sales made by each sales agent.*/
+SELECT emp.EmployeeId, emp.FirstName, emp.LastName, COUNT(inv.Total) AS Total_Sales_Made
+FROM chinook.employees emp
+INNER JOIN chinook.customers c
+ON c.SupportRepId = emp.EmployeeId
+INNER JOIN chinook.invoices inv
+ON inv.CustomerId = c.CustomerId
+GROUP BY emp.EmployeeId
+
+OR
+
+SELECT emp.EmployeeId, emp.FirstName, emp.LastName, 
+SUM(invt.UnitPrice*invt.Quantity) AS Total_Sales_made
+FROM chinook.employees emp
+INNER JOIN chinook.customers c
+ON c.SupportRepId = emp.EmployeeId
+INNER JOIN chinook.invoices inv
+ON inv.CustomerId = c.CustomerId
+INNER JOIN chinook.invoice_items invt
+ON inv.InvoiceId = invt.InvoiceId
+GROUP BY emp.EmployeeId
