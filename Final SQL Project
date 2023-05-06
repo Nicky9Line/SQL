@@ -109,3 +109,17 @@ ON inv.CustomerId = c.CustomerId
 INNER JOIN chinook.invoice_items invt
 ON inv.InvoiceId = invt.InvoiceId
 GROUP BY emp.EmployeeId
+
+
+/*Which sales agent made the most dollars in sales in 2009?*/
+SELECT emp.EmployeeId, emp.FirstName, emp.LastName, SUM(invt.UnitPrice * invt.Quantity) AS Total_sales
+FROM chinook.employees emp
+INNER JOIN chinook.customers c
+ON c.SupportRepId = emp.EmployeeId
+INNER JOIN chinook.invoices inv
+ON inv.CustomerId = c.CustomerId
+INNER JOIN chinook.invoice_items invt
+ON inv.InvoiceId = invt.InvoiceId
+WHERE inv.InvoiceDate BETWEEN '2009-01-01' AND '2009-12-31' 
+GROUP BY emp.EmployeeId 
+ORDER BY emp.EmployeeId DESC LIMIT 1
