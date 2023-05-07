@@ -1,0 +1,10 @@
+## Using SQL search the data to retrieve The account numbers, the count of order IDs, product, quantity, 
+price, order date, and location for all orders that were placed in February.##
+
+SELECT c.acctnum, COUNT(c.order_id) AS Orders,
+f.Product, f.Quantity, f.price, f.orderdate, f.location
+FROM BIT_DB.customers c
+INNER JOIN BIT_DB.FebSales f
+ON c.order_id = f.orderID
+GROUP BY 
+c.acctnum, f.Product, f.Quantity, f.price, f.orderdate, f.location
